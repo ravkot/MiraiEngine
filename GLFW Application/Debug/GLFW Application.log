@@ -1,5 +1,4 @@
 ﻿  GLFW Application.cpp
-c:\users\acer\source\repos\glfw application\glfw application\glfw application.cpp(213): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\users\acer\source\repos\glfw application\glfw application\glfw application.cpp(269): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
 SOILd.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOILd.lib(image_DXT.obj)' or at 'C:\Users\ACER\source\repos\GLFW Application\Debug\SOIL.pdb'; linking object as if no debug info
