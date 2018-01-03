@@ -1,0 +1,95 @@
+
+<Shader title="Shader/NormalMap Distortion">
+  <Type id="0" name="Geometry">
+
+  </Type>
+  <Type id="3" name="Vertex">
+    #version 330 core
+    layout (location = 0) in vec3 vpos;
+    layout (location = 1) in vec3 normal;
+    layout (location = 2) in vec3 vcolor;
+    layout (location = 3) in vec2 vtexCoord0;
+
+    out vec3 pos;
+    out vec3 color;
+    out vec2 texCoord0;
+    out vec3 Normal;
+    out vec3 FragPos;
+
+    uniform float time;
+    uniform mat4 transform;
+
+    uniform mat4 model;
+    uniform mat4 view;
+    uniform mat4 projection;
+
+    void main()
+    {
+        gl_Position = projection * view * model *vec4(vpos, 1.0);
+        pos = vpos;
+        texCoord0 = vtexCoord0;
+        FragPos = vec3(model * vec4(vpos, 1.0));
+        Normal = mat3(transpose(inverse(model))) * normal;
+        color = vcolor;
+    }
+  </Type>
+  <Type id="4" name="Fragment">
+    #version 330 core
+    out vec4 FragColor;
+    in vec3 pos;
+    in vec3 color;
+    in vec2 texCoord0;
+    in vec3 Normal;
+    in vec3 FragPos;
+
+    uniform sampler2D tex0;
+    uniform sampler2D tex1;
+    uniform sampler2D tex2;
+    uniform float time;
+
+    struct Material {
+        vec3 ambient;
+        vec3 diffuse;
+        vec3 specular;
+        float shininess;
+    };
+
+    struct Light {
+        vec3 position;
+
+        vec3 ambient;
+        vec3 diffuse;
+        vec3 specular;
+    };
+
+    uniform Light light;
+    uniform Material material;
+    uniform vec3 viewPos;
+
+    void main()
+    {
+    // ambient
+    vec3 ambient = light.ambient * material.ambient;
+
+    // diffuse
+    vec3 norm = normalize(Normal);
+    vec3 lightDir = normalize(light.position - FragPos);
+    float diff = max(dot(norm, lightDir), 0.0);
+    vec3 diffuse = light.diffuse * (diff * material.diffuse);
+
+    // specular
+    vec3 viewDir = normalize(viewPos - FragPos);
+    vec3 reflectDir = reflect(-lightDir, norm);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    vec3 specular = light.specular * (spec * material.specular);
+
+    vec3 result = ambient + diffuse + specular;
+
+    vec4 clouds = texture2D(tex0, texCoord0);
+        if(clouds.a > 0.0)
+          FragColor = clouds;
+        else
+          FragColor = vec4(result, 1.0);
+    }
+  </Type>
+</Shader>

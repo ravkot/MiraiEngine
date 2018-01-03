@@ -1,0 +1,19 @@
+<Material title="Material/Gold">
+  <Uniform name="ambient">
+    <Uniform name="r">0.24725</Uniform>
+    <Uniform name="g">0.1995</Uniform>
+    <Uniform name="b">0.0745</Uniform>
+  </Uniform>
+  <Uniform name="diffuse">
+    <Uniform name="r">0.75164</Uniform>
+    <Uniform name="g">0.60648</Uniform>
+    <Uniform name="b">0.22648</Uniform>
+  </Uniform>
+  <Uniform name="specular">
+    <Uniform name="r">0.628281</Uniform>
+    <Uniform name="g">0.555802</Uniform>
+    <Uniform name="b">0.366065</Uniform>
+  </Uniform>
+  <Uniform name="shininess">0.4</Uniform>
+  <Uniform name="texture"></Uniform>
+</Material>

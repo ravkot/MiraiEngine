@@ -1,0 +1,51 @@
+
+<Shader title="Shader/NormalMap Distortion">
+  <Type id="0" name="Geometry">
+
+  </Type>
+  <Type id="3" name="Vertex">
+    #version 330 core
+    layout (location = 0) in vec3 vpos;
+    layout (location = 1) in vec3 vcolor;
+    layout (location = 2) in vec2 vtexCoord0;
+
+    out vec3 pos;
+    out vec3 color;
+    out vec2 texCoord0;
+    uniform float time;
+    uniform mat4 transform;
+
+    void main()
+    {
+        gl_Position = vec4(vpos, 1.0);
+        pos = vpos;
+        texCoord0 = vtexCoord0;
+        color = vcolor;
+    }
+  </Type>
+  <Type id="4" name="Fragment">
+    #version 330 core
+    out vec4 FragColor;
+    in vec3 pos;
+    in vec3 color;
+    in vec2 texCoord0;
+
+    uniform sampler2D tex0;
+    uniform sampler2D tex1;
+    uniform sampler2D tex2;
+    uniform float time;
+
+    void main()
+    {
+        vec2 distortionSpeed = texCoord0;
+        distortionSpeed.y += time/5.0;
+        float distortionStrength = 0.05f;
+
+        vec4 nmap   = texture2D(tex1, distortionSpeed);
+        vec4 clouds = texture2D(tex2, distortionSpeed/2.0);
+
+        vec4 sprite = texture2D(tex0, texCoord0+nmap.xy*clouds.xy*distortionStrength);
+        FragColor = sprite;
+    }
+  </Type>
+</Shader>

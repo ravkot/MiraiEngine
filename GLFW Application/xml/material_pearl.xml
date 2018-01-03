@@ -1,0 +1,19 @@
+<Material title="Material/Pearl">
+  <Uniform name="ambient">
+    <Uniform name="r">0.25</Uniform>
+    <Uniform name="g">0.20725</Uniform>
+    <Uniform name="b">0.20725</Uniform>
+  </Uniform>
+  <Uniform name="diffuse">
+    <Uniform name="r">1</Uniform>
+    <Uniform name="g">0.829</Uniform>
+    <Uniform name="b">0.829</Uniform>
+  </Uniform>
+  <Uniform name="specular">
+    <Uniform name="r">0.296648</Uniform>
+    <Uniform name="g">0.296648</Uniform>
+    <Uniform name="b">0.296648</Uniform>
+  </Uniform>
+  <Uniform name="shininess">0.088</Uniform>
+  <Uniform name="texture"></Uniform>
+</Material>

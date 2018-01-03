@@ -1,0 +1,19 @@
+<Material title="Material/Default">
+  <Uniform name="ambient">
+    <Uniform name="r"></Uniform>
+    <Uniform name="g"></Uniform>
+    <Uniform name="b"></Uniform>
+  </Uniform>
+  <Uniform name="diffuse">
+    <Uniform name="r"></Uniform>
+    <Uniform name="g"></Uniform>
+    <Uniform name="b"></Uniform>
+  </Uniform>
+  <Uniform name="specular">
+    <Uniform name="r"></Uniform>
+    <Uniform name="g"></Uniform>
+    <Uniform name="b"></Uniform>
+  </Uniform>
+  <Uniform name="shininess"></Uniform>
+  <Uniform name="texture"></Uniform>
+</Material>
